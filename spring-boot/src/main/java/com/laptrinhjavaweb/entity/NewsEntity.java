@@ -13,8 +13,8 @@ public class NewsEntity extends BaseEntity {
 	@Column(name = "title")
 	private String title;
 
-	@Column(name = "thumbnai")
-	private String thumbnai;
+	@Column(name = "thumbnail")
+	private String thumbnail;
 
 	@Column(name = "shortdescription")
 	private String shortDescription;
@@ -34,12 +34,12 @@ public class NewsEntity extends BaseEntity {
 		this.title = title;
 	}
 
-	public String getThumbnai() {
-		return thumbnai;
+	public String getThumbnail() {
+		return thumbnail;
 	}
 
-	public void setThumbnai(String thumbnai) {
-		this.thumbnai = thumbnai;
+	public void setThumbnail(String thumbnai) {
+		this.thumbnail = thumbnai;
 	}
 
 	public String getShortDescription() {
