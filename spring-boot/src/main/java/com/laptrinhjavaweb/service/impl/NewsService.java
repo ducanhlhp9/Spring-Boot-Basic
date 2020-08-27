@@ -1,6 +1,10 @@
 package com.laptrinhjavaweb.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.laptrinhjavaweb.converter.NewsConverter;
@@ -34,6 +38,41 @@ public class NewsService implements INewsService {
 		newsEntity.setCategory(categoryEntity);
 		newsEntity = newsRepository.save(newsEntity);
 		return newsConverter.toDTO(newsEntity);
+	}
+
+	@Override
+	public void delete(long[] ids) {
+		for(long item: ids) {
+			newsRepository.delete(item);
+		}
+	}
+
+	@Override
+	public List<NewsDTO> findAll(Pageable pageable) {
+		List<NewsDTO> result = new ArrayList<NewsDTO>();
+		List<NewsEntity> entities = newsRepository.findAll(pageable).getContent();
+		for(NewsEntity item: entities) {
+			NewsDTO newsDTO = newsConverter.toDTO(item);
+			result.add(newsDTO);
+		}
+		return result;
+	}
+
+	@Override
+	public int totalItem() {
+		
+		return (int) newsRepository.count();
+	}
+
+	@Override
+	public List<NewsDTO> findAll() {
+		List<NewsDTO> result = new ArrayList<NewsDTO>();
+		List<NewsEntity> entities = newsRepository.findAll();
+		for(NewsEntity item: entities) {
+			NewsDTO newsDTO = newsConverter.toDTO(item);
+			result.add(newsDTO);
+		}
+		return result;
 	}
 
 //	@Override
