@@ -3,28 +3,39 @@ package com.laptrinhjavaweb.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass // khi tạo table trong các entity thì nó tự động apply vào các class con
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+@MappedSuperclass // khi tạo table trong các entity thì nó tự động apply vào các class con
+@EntityListeners(AuditingEntityListener.class) // khai bao auditing de tu convert du lieu ra view k can set
 public abstract class BaseEntity {
 	@Id // khai báo đây là trường id(not null, primary key)
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment
 	private Long id;
 
 	@Column
+	@CreatedBy
 	private String createdBy;
 
 	@Column
+	@CreatedDate
 	private Date createdDate;
 
 	@Column
+	@LastModifiedBy
 	private String modifiedBy;
 
 	@Column
+	@LastModifiedDate
 	private Date modifiedDate;
 
 	public Long getId() {

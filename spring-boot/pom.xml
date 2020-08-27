@@ -12,7 +12,7 @@
 	</parent>
 
 	<properties>
-	<mysql.version>8.0.17</mysql.version>
+		<mysql.version>8.0.17</mysql.version>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -35,6 +35,12 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
 

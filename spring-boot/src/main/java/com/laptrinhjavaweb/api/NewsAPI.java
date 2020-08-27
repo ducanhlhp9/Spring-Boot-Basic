@@ -30,13 +30,13 @@ public class NewsAPI {
 	public NewsDTO createNews(@RequestBody NewsDTO model) {
 		return newsService.save(model);
 	}
-	
+
 	@PutMapping(value = "/news/{id}")
-	public NewsDTO updateNews(@RequestBody NewsDTO model, @PathVariable("id")long id) {
+	public NewsDTO updateNews(@RequestBody NewsDTO model, @PathVariable("id") long id) {
 		model.setId(id);
 		return newsService.save(model);
 	}
-	
+
 	@DeleteMapping(value = "/news")
 	public void deleteNews(@RequestBody long[] ids) {
 		System.out.println("{}");
